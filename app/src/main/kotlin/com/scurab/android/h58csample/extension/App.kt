@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Looper
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
+import android.support.v4.widget.SwipeRefreshLayout
 import android.view.View
 import com.scurab.android.h58csample.H58CSampleApp
 import java.io.PrintWriter
@@ -27,10 +28,17 @@ fun Throwable.stackTrace(): String {
 }
 
 fun View.setVisibilitySafe(visible: Boolean) {
-    if (Looper.getMainLooper() == Looper.myLooper()) {
-        visibility = if (visible) View.VISIBLE else View.GONE
-    } else {
-        post { setVisibilitySafe(visible) }
-    }
+    postIfNecessary { visibility = if (visible) View.VISIBLE else View.GONE }
 }
 
+fun SwipeRefreshLayout.setIsRefreshingSafe(refreshing: Boolean) {
+    postIfNecessary { isRefreshing = refreshing }
+}
+
+fun View.postIfNecessary(func: () -> Unit) {
+    if (Looper.getMainLooper() == Looper.myLooper()) {
+        func()
+    } else {
+        post { func() }
+    }
+}
