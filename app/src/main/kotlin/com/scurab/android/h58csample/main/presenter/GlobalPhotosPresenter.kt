@@ -2,8 +2,8 @@ package com.scurab.android.h58csample.main.presenter
 
 import com.scurab.android.h58csample.api.ServerApi
 import com.scurab.android.h58csample.base.BasePresenter
-import com.scurab.android.h58csample.base.IViewContract
 import com.scurab.android.h58csample.base.HasProgressBar
+import com.scurab.android.h58csample.base.IViewContract
 import com.scurab.android.h58csample.component.*
 import com.scurab.android.h58csample.main.INavigator
 import com.scurab.android.h58csample.main.MainComponent

@@ -1,7 +1,5 @@
 package com.scurab.android.h58csample.component
 
-import com.scurab.android.h58csample.component.Cacheable
-import com.scurab.android.h58csample.component.Source
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith

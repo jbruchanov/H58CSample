@@ -2,10 +2,10 @@ package com.scurab.android.h58csample.module
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
+import com.scurab.android.h58csample.BuildConfig
 import com.scurab.android.h58csample.api.ServerApi
 import com.scurab.android.h58csample.component.ILogger
 import com.scurab.android.h58csample.dagger.PerApp
-import com.scurab.android.h58csample.BuildConfig
 import dagger.Module
 import dagger.Provides
 import okhttp3.ConnectionSpec
