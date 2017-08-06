@@ -9,7 +9,7 @@ import java.util.*
  */
 class LocaleHelperTest {
 
-    private val localeHelper = LocaleHelper()
+    private val localeHelper = JavaLocaleHelper()
 
     @Test
     fun testParseDateTaken() {

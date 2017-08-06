@@ -2,6 +2,7 @@ package com.scurab.android.h58csample
 
 import android.app.Application
 import com.facebook.stetho.Stetho
+import com.scurab.android.h58csample.component.AndroidLocaleHelper
 import com.scurab.android.h58csample.component.AndroidLogger
 import com.scurab.android.h58csample.component.AndroidRxSchedulers
 import com.scurab.android.h58csample.module.AppModule
@@ -19,7 +20,7 @@ open class H58CSampleApp : Application() {
     }
 
     internal open fun onCreateAppModule(): AppModule {
-        return AppModule(this, AndroidLogger(), AndroidRxSchedulers())
+        return AppModule(this, AndroidLogger(), AndroidRxSchedulers(), AndroidLocaleHelper())
     }
 
     override fun onCreate() {

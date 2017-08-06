@@ -1,5 +1,6 @@
 package com.scurab.android.h58csample
 
+import com.scurab.android.h58csample.component.JavaLocaleHelper
 import com.scurab.android.h58csample.component.JavaLogger
 import com.scurab.android.h58csample.component.TextRxSchedulers
 import com.scurab.android.h58csample.module.AppModule
@@ -11,7 +12,7 @@ class TestH58CSampleApp : H58CSampleApp() {
 
 
     override fun onCreateAppModule(): AppModule {
-        return AppModule(this, JavaLogger(), TextRxSchedulers())
+        return AppModule(this, JavaLogger(), TextRxSchedulers(), JavaLocaleHelper())
     }
 
     override fun onCreate() {

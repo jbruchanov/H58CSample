@@ -15,7 +15,8 @@ import dagger.Provides
 @Module
 class AppModule(val app: H58CSampleApp,
                 val logger: ILogger,
-                var rxSchedulers: IRxSchedulers) {
+                var rxSchedulers: IRxSchedulers,
+                var localeHelper: ILocaleHelper) {
     @PerApp
     @Provides
     fun provideApp(): H58CSampleApp {
@@ -44,7 +45,7 @@ class AppModule(val app: H58CSampleApp,
     @PerApp
     @Provides
     fun provideLocaleHelper(): ILocaleHelper {
-        return LocaleHelper()
+        return localeHelper
     }
 
     @PerApp
