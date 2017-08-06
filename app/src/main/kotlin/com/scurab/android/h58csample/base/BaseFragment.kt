@@ -12,11 +12,13 @@ import com.scurab.android.h58csample.extension.app
 /**
  * Created by JBruchanov on 06/08/2017.
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<T : BasePresenter<*>> : Fragment() {
 
     lateinit var appComponent: AppComponent
         private set
 
+    protected lateinit var presenter: T
+    protected abstract val layoutId : Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,16 +31,16 @@ abstract class BaseFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        basePresenter().onResume()
+        presenter.onResume()
     }
 
     override fun onPause() {
-        basePresenter().onPause()
+        presenter.onPause()
         super.onPause()
     }
 
     override fun onDestroyView() {
-        basePresenter().onDetachViewContract()
+        presenter.onDetachViewContract()
         super.onDestroyView()
     }
 
@@ -52,8 +54,4 @@ abstract class BaseFragment : Fragment() {
         ensureArguments()
         arguments.putParcelable(key, obj)
     }
-
-    protected abstract fun basePresenter(): BasePresenter<*>
-
-    protected abstract val layoutId : Int
 }
