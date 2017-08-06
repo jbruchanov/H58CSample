@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Text">
+        <item name="android:textColor">@color/text_dark</item>
+    </style>
+
+    <style name="Text.Title">
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
+
+    <style name="Text.SubTitle">
+        <item name="android:textSize">@dimen/text_mid</item>
+        <item name="android:textStyle">italic</item>
+    </style>
 </resources>
