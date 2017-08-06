@@ -11,9 +11,9 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by JBruchanov on 06/08/2017.
  */
-interface BaseViewContract
+interface IViewContract
 
-open class BasePresenter<T : BaseViewContract> {
+open class BasePresenter<T : IViewContract> {
 
     private var _viewContract: T? = null
     protected val viewContract: T get() = _viewContract!!

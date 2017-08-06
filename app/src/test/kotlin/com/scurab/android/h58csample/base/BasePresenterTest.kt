@@ -11,7 +11,7 @@ class BasePresenterTest {
 
     @Test()
     fun testLifecycleStartDoesntStopObservable() {
-        val presenter = object : BasePresenter<BaseViewContract>() {}
+        val presenter = object : BasePresenter<IViewContract>() {}
 
         val testScheduler = TestScheduler()
         val test = Observable
@@ -28,7 +28,7 @@ class BasePresenterTest {
 
     @Test()
     fun testLifecycleStopDoesStopObservable() {
-        val presenter = object : BasePresenter<BaseViewContract>() {}
+        val presenter = object : BasePresenter<IViewContract>() {}
 
         val testScheduler = TestScheduler()
         val test = Observable

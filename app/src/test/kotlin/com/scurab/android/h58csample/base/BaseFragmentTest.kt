@@ -15,11 +15,13 @@ class BaseFragmentTest {
 
     @Test
     fun testPassesEvents() {
-        var presenter = mock(BasePresenter::class.java)
+        var presenter = mock(BasePresenter::class.java) as BasePresenter<IViewContract>
         val fragment =
-                @SuppressLint("ValidFragment") object : BaseFragment() {
-                    override fun basePresenter(): BasePresenter<*> = presenter
+                @SuppressLint("ValidFragment") object : BaseFragment<BasePresenter<IViewContract>>() {
                     override val layoutId: Int = 0
+                    init {
+                        this.presenter = presenter
+                    }
                 }
 
         fragment.onResume()
