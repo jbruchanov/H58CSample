@@ -8,10 +8,12 @@ import com.scurab.android.h58csample.component.*
 import com.scurab.android.h58csample.main.INavigator
 import com.scurab.android.h58csample.main.MainComponent
 import com.scurab.android.h58csample.main.PhotoItemClickListener
+import com.scurab.android.h58csample.model.Comparators
 import com.scurab.android.h58csample.model.Photo
 import com.scurab.android.h58csample.model.PublicPhotos
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.subscribeBy
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -69,6 +71,11 @@ class GlobalPhotosPresenter(component: MainComponent? = null) : BasePresenter<IG
                 .getPublicPhotos(viewContract.tags())
                 .subscribeOn(schedulers.io())
                 .compose(localeHelper.transformer())
+                .map { it ->
+                    //TODO:argument to select taken vs published
+                    Collections.sort(it.items, Comparators.PhotoSortByTaken)
+                    it
+                }
                 .compose(cache.reuse(lastPhotos, manual))
                 .compose(bindToLifecycle())
                 .compose(bindToProgressBarVisibility(viewContract))
