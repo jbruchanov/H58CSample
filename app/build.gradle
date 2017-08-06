@@ -7,7 +7,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
     defaultConfig {
-        applicationId "com.scurab.android.h58csample.h58csample"
+        applicationId "com.scurab.android.h58csample"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1

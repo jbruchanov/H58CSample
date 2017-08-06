@@ -4,7 +4,6 @@ import android.app.Application
 import com.facebook.stetho.Stetho
 import com.scurab.android.h58csample.component.AndroidLogger
 import com.scurab.android.h58csample.component.AndroidRxSchedulers
-import com.scurab.android.h58csample.h58csample.BuildConfig
 import com.scurab.android.h58csample.module.AppModule
 
 /**
