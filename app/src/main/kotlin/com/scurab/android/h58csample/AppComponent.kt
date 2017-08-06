@@ -1,6 +1,7 @@
 package com.scurab.android.h58csample
 
 import com.scurab.android.h58csample.api.ServerApi
+import com.scurab.android.h58csample.component.ICache
 import com.scurab.android.h58csample.component.ILocaleHelper
 import com.scurab.android.h58csample.component.ILogger
 import com.scurab.android.h58csample.component.IRxSchedulers
@@ -20,5 +21,6 @@ interface AppComponent {
     fun serverApi(): ServerApi
     fun schedulers(): IRxSchedulers
     fun logger(): ILogger
+    fun cache(): ICache
     fun localeHelper(): ILocaleHelper
 }

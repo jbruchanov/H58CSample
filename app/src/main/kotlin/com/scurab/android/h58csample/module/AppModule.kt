@@ -3,10 +3,7 @@ package com.scurab.android.h58csample.module
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.scurab.android.h58csample.H58CSampleApp
-import com.scurab.android.h58csample.component.ILocaleHelper
-import com.scurab.android.h58csample.component.ILogger
-import com.scurab.android.h58csample.component.IRxSchedulers
-import com.scurab.android.h58csample.component.LocaleHelper
+import com.scurab.android.h58csample.component.*
 import com.scurab.android.h58csample.dagger.PerApp
 import dagger.Module
 import dagger.Provides
@@ -48,5 +45,11 @@ class AppModule(val app: H58CSampleApp,
     @Provides
     fun provideLocaleHelper(): ILocaleHelper {
         return LocaleHelper()
+    }
+
+    @PerApp
+    @Provides
+    fun provideCache(): ICache {
+        return AndroidCache()
     }
 }
