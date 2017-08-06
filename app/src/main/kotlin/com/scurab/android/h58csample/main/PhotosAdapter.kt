@@ -32,6 +32,7 @@ class PhotosAdapter : RecyclerView.Adapter<PhotoViewHolder>() {
 
     private lateinit var layoutInflater: LayoutInflater
     private var itemClickListener: PhotoItemClickListener? = null
+    private var itemLongClickListener: PhotoItemClickListener? = null
     lateinit var localeHelper: ILocaleHelper
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
@@ -43,6 +44,7 @@ class PhotosAdapter : RecyclerView.Adapter<PhotoViewHolder>() {
         val view = layoutInflater.inflate(R.layout.view_item_photo, parent, false)
         val photoViewHolder = PhotoViewHolder(view)
         view.setOnClickListener { dispatchItemClick(photoViewHolder.adapterPosition) }
+        view.setOnLongClickListener { dispatchItemLongClick(photoViewHolder.adapterPosition); true }
         return photoViewHolder
     }
 
@@ -65,8 +67,18 @@ class PhotosAdapter : RecyclerView.Adapter<PhotoViewHolder>() {
         }
     }
 
+    fun dispatchItemLongClick(position: Int) {
+        itemLongClickListener?.let {
+            it(items[position])
+        }
+    }
+
     fun setItemClickListener(clickListener: PhotoItemClickListener?) {
         this.itemClickListener = clickListener
+    }
+
+    fun setItemLongClickListener(longClickListener: PhotoItemClickListener?) {
+        this.itemLongClickListener = longClickListener
     }
 }
 

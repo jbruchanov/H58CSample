@@ -7,4 +7,5 @@ import com.scurab.android.h58csample.model.Photo
  */
 interface INavigator {
     fun openPhoto(photo: Photo)
+    fun sharePhoto(photo : Photo)
 }

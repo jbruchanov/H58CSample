@@ -22,6 +22,7 @@ interface IGlobalPhotosViewContract : IViewContract, HasProgressBar {
     fun setOnRefreshListener(callback: (() -> Unit)?)
     fun setPhotos(items: List<Photo>, localeHelper: ILocaleHelper)
     fun setItemClickListener(clickListener: PhotoItemClickListener?)
+    fun setItemLongClickListener(longClickListener: PhotoItemClickListener?)
 }
 
 class GlobalPhotosPresenter(component: MainComponent? = null) : BasePresenter<IGlobalPhotosViewContract>() {
@@ -46,6 +47,7 @@ class GlobalPhotosPresenter(component: MainComponent? = null) : BasePresenter<IG
         super.onAttachViewContract(viewContract)
         viewContract.setOnRefreshListener { onLoadData(true) }
         viewContract.setItemClickListener { onItemClick(it) }
+        viewContract.setItemLongClickListener { onItemLongClick(it) }
     }
 
     override fun onResume() {
@@ -55,6 +57,10 @@ class GlobalPhotosPresenter(component: MainComponent? = null) : BasePresenter<IG
 
     fun onItemClick(photo: Photo) {
         navigator.openPhoto(photo)
+    }
+
+    fun onItemLongClick(photo: Photo) {
+        navigator.sharePhoto(photo)
     }
 
     internal fun onLoadData(manual: Boolean) {

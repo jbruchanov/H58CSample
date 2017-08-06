@@ -3,6 +3,7 @@ package com.scurab.android.h58csample.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.ShareCompat
 import android.support.v7.app.AppCompatActivity
 import com.scurab.android.h58csample.R
 import com.scurab.android.h58csample.component.ILogger
@@ -47,6 +48,20 @@ class MainActivity : AppCompatActivity(), INavigator {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(photo.link)))
         } catch (e: Throwable) {
             logger.d("MainActivity", "openPhoto", e)
+        }
+    }
+
+    override fun sharePhoto(photo: Photo) {
+        try {
+            //TODO: sharing directly would need download full resolution and also own ContentProvider
+            ShareCompat.IntentBuilder.from(this)
+                    .setType("message/rfc822")
+                    .setSubject(resources.getString(R.string.share))
+                    .setText(photo.link)
+                    .setChooserTitle(R.string.share)
+                    .startChooser()
+        } catch (e: Throwable) {
+            logger.d("MainActivity", "sharePhoto", e)
         }
     }
 }

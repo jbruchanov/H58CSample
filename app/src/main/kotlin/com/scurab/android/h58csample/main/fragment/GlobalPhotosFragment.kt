@@ -99,4 +99,8 @@ class GlobalPhotosViewContract(private val view: View) : IGlobalPhotosViewContra
     override fun setItemClickListener(clickListener: PhotoItemClickListener?) {
         photosAdapter.setItemClickListener(clickListener)
     }
+
+    override fun setItemLongClickListener(longClickListener: PhotoItemClickListener?) {
+        photosAdapter.setItemLongClickListener(longClickListener)
+    }
 }
