@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -21,13 +20,70 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    flavorDimensions("server_target")
+
+    productFlavors {
+        dev {
+            dimension = "server_target"
+            buildConfigField "String", "SERVER_URL", '"https://api.flickr.com/services/"'
+            buildConfigField "String", "API_KEY", '"25ecee8f9a562560d8cbb1970cfc79fd"'
+            buildConfigField "String", "API_SECRET", '"c8ed4354bbac842e"'
+        }
+    }
+
+}
+
+
+kapt {
+    generateStubs = true
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.0.0'
+
+    def supportLib = "26.0.0"
+    def dagger = "2.11"
+    def retrofit_lib_version = "2.3.0"
+    def okhttp3_lib_version = "3.8.1"
+    def butterKnife = "8.7.0"
+    def assertJ = "1.1.1"
+
+    implementation "com.android.support:appcompat-v7:$supportLib"
+    implementation "com.android.support:design:${supportLib}"
+    implementation "com.android.support:support-v4:$supportLib"
+
+    kapt "com.jakewharton:butterknife-compiler:$butterKnife"
+    implementation "com.jakewharton:butterknife:$butterKnife"
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.0.3'
+
+
+    kapt "com.google.dagger:dagger-compiler:$dagger"
+    implementation "com.google.dagger:dagger:$dagger"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_lib_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_lib_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_lib_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp3_lib_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_lib_version"
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+
+
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.0'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.0'
+    testImplementation "com.squareup.assertj:assertj-android:$assertJ"
+    testImplementation "com.squareup.assertj:assertj-android-design:$assertJ"
+    testImplementation "com.squareup.assertj:assertj-android-support-v4:$assertJ"
+    testImplementation "org.robolectric:robolectric:3.4"
+    testImplementation "org.mockito:mockito-core:2.8.47"
+
 }
+
